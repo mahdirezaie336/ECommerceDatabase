@@ -1,4 +1,3 @@
-# main.py
 from fastapi import FastAPI
 from routes.product import router as product_router
 
