@@ -1,4 +1,4 @@
-from crawler import ZaraCrawler
+from crawler import AmazonCrawler
 
 
 
@@ -7,7 +7,7 @@ def main():
     Main function to run the crawler.
     """
     # Initialize the crawler
-    crawler = ZaraCrawler()
+    crawler = AmazonCrawler()
 
     # Run the crawler
     crawler.run()
