@@ -3,8 +3,8 @@ from typing import Optional
 
 class ProductBase(BaseModel):
     name: str
-    original_price: str
-    discounted_price: str
+    original_price: float
+    discounted_price: float
     discount_percent: float
     purchase_url: str
     image_url: str
