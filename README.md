@@ -30,9 +30,13 @@ This is a sample API project using FastAPI. It provides endpoints to retrieve a 
     uvicorn main:app --reload
     ```
 
-4. **Access the API documentation**:
+4. **Run the crawler**:
+    ```sh
+    python run_crawler.py
+    ```
+
+5. **Access the API documentation**:
     - Swagger UI: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
-    - ReDoc: [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)
 
 ## Example Usage
 
