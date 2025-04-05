@@ -52,6 +52,13 @@ class AmazonCrawler(Crawler):
         products = []
         for product_element in products_elements:
             try:
+                # The discounted price
+                try:
+                    discounted_price = product_element.find_element(By.CSS_SELECTOR, 'span.a-text-price').text
+                    discounted_price = discounted_price.replace("$", "")
+                except:
+                    continue
+
                 # Title
                 title_elem = product_element.find_element(By.TAG_NAME, 'h2')
                 title = title_elem.text.strip()
@@ -71,17 +78,16 @@ class AmazonCrawler(Crawler):
                 except:
                     price = "N/A"
 
-                # The discounted price
-                try:
-                    discounted_price = product_element.find_element(By.CSS_SELECTOR, 'span.a-text-price').text
-                    discounted_price = discounted_price.replace("$", "")
-                except:
-                    discounted_price = "N/A"
+                price, discounted_price = discounted_price, price
 
+                price = float(price.replace(",", ""))
+                discounted_price = float(discounted_price.replace(",", ""))
+                discount_percent = ((price - discounted_price) / price) * 100 if price > 0 else 0
                 products.append(Product(
                     name=title,
                     original_price=price,
                     discounted_price=discounted_price,
+                    discount_percent=round(discount_percent, 2),
                     purchase_url=link,
                     image_url=img_url,
                     store="Amazon",

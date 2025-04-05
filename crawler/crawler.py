@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 from typing import List
 
 from models import Product
+from database import get_db
 
 import logging
 
@@ -19,9 +20,17 @@ class Crawler(ABC):
         """
         Save products to the database.
         """
-        print("Saving products to the database...")
-        print(products)
-        pass
+        db = get_db()
+        logger.info("Saving products to the database...")
+        for product in products:
+            try:
+                db.add(product)
+                db.commit()
+                db.refresh(product)
+                logger.info(f"Saved product: {product}")
+            except Exception as e:
+                logger.error(f"Failed to save product {product}: {e}")
+                db.rollback()
 
     @abstractmethod
     def run(self):
