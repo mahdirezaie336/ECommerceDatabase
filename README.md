@@ -25,18 +25,24 @@ This is a sample API project using FastAPI. It provides endpoints to retrieve a 
     pip install -r requirements.txt
     ```
 
-3. **Run the FastAPI application**:
+3. **Run Alembic migrations**:
+    ```sh
+    alembic upgrade heads
+    ```
+
+4. **Run the FastAPI application**:
     ```sh
     uvicorn main:app --reload
     ```
 
-4. **Run the crawler**:
+5. **Run the crawler**:
     ```sh
     python run_crawler.py
     ```
 
-5. **Access the API documentation**:
+6. **Access the API documentation**:
     - Swagger UI: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
+
 
 ## Example Usage
 
